@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출결 관리 시스템</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>출결 관리 시스템</h1>
+            <div class="role-selector">
+                <button id="studentBtn" class="role-btn active">학생/학부모</button>
+                <button id="teacherBtn" class="role-btn">교사</button>
+            </div>
+        </header>
+
+        <!-- 학생/학부모 화면 -->
+        <div id="studentSection" class="section active">
+            <div class="form-container">
+                <h2>출결 사유 제출</h2>
+                <form id="attendanceForm">
+                    <div class="form-group">
+                        <label for="studentName">학생 이름:</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentClass">학년반:</label>
+                        <select id="studentClass" required>
+                            <option value="">선택하세요</option>
+                            <option value="1-1">1학년 1반</option>
+                            <option value="1-2">1학년 2반</option>
+                            <option value="2-1">2학년 1반</option>
+                            <option value="2-2">2학년 2반</option>
+                            <option value="3-1">3학년 1반</option>
+                            <option value="3-2">3학년 2반</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>출결 상태:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="attendanceType" value="지각" required> 지각</label>
+                            <label><input type="radio" name="attendanceType" value="결석" required> 결석</label>
+                            <label><input type="radio" name="attendanceType" value="조퇴" required> 조퇴</label>
+                            <label><input type="radio" name="attendanceType" value="외출" required> 외출</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">사유:</label>
+                        <select id="reason" required>
+                            <option value="">선택하세요</option>
+                            <option value="병원">병원</option>
+                            <option value="몸살/감기">몸살/감기</option>
+                            <option value="두통">두통</option>
+                            <option value="복통">복통</option>
+                            <option value="가족사">가족사</option>
+                            <option value="개인사정">개인사정</option>
+                            <option value="교통사고">교통사고</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memo">메모 (선택사항):</label>
+                        <textarea id="memo" rows="3" placeholder="추가 설명이 있으면 작성해주세요"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">제출하기</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 교사 화면 -->
+        <div id="teacherSection" class="section">
+            <div class="teacher-container">
+                <h2>출결 현황 관리</h2>
+                
+                <div class="controls">
+                    <div class="date-control">
+                        <label for="dateSelect">날짜:</label>
+                        <input type="date" id="dateSelect">
+                    </div>
+                    <div class="class-filter">
+                        <label for="classFilter">학반 필터:</label>
+                        <select id="classFilter">
+                            <option value="">전체</option>
+                            <option value="1-1">1학년 1반</option>
+                            <option value="1-2">1학년 2반</option>
+                            <option value="2-1">2학년 1반</option>
+                            <option value="2-2">2학년 2반</option>
+                            <option value="3-1">3학년 1반</option>
+                            <option value="3-2">3학년 2반</option>
+                        </select>
+                    </div>
+                    <button id="clearAllBtn" class="clear-btn">전체 삭제</button>
+                </div>
+
+                <div class="statistics">
+                    <div class="stat-item">
+                        <h3>통계</h3>
+                        <div class="stat-numbers">
+                            <span class="stat normal">정상 출석: <span id="normalCount">0</span></span>
+                            <span class="stat late">인정 지각: <span id="lateCount">0</span></span>
+                            <span class="stat absent">결석: <span id="absentCount">0</span></span>
+                            <span class="stat early">조퇴/외출: <span id="earlyCount">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attendance-list">
+                    <h3>출결 사유 목록</h3>
+                    <div id="attendanceRecords" class="records-container">
+                        <p class="no-records">아직 제출된 출결 사유가 없습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
